@@ -1,0 +1,5 @@
+{
+    "terminal.integrated.shell.windows": "C:\\windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+    "php.validate.executablePath": "C:\\lcp\\go-programming\\pkg\\php-7.2.9-nts-Win32-VC15-x64\\php.exe",
+   
+}
