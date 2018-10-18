@@ -40,7 +40,7 @@ func fillData(w http.ResponseWriter, r *http.Request) {
 		bookMySQL(correctURL, get)
 		gif = ConvertPicture(w, r, "../image/validation.gif")
 		validation := "<html> <body> <p style=\"text-align:center;\"><img src=\"data:image/jpeg;base64," + gif + "\"></p> </body> </html>"
-		refresh := "<html> <script> var timer = setTimeout(function() { window.location='https://shwrfr.com/tito/' }, 3600); </script> </html>"
+		refresh := "<html> <script> var timer = setTimeout(function() { window.location='https://"+ os.Getenv("tito_ip") +"' }, 3600); </script> </html>"
 		w.Write([]byte(fmt.Sprintf(validation)))
 		w.Write([]byte(fmt.Sprintf(refresh)))
 	}

@@ -9,6 +9,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"os"
 )
 
 func request(w http.ResponseWriter, r *http.Request) {
@@ -17,13 +18,13 @@ func request(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	if r.Method == "GET" {
-		http.ServeFile(w, r, "../html/index.html")
+		http.ServeFile(w, r, "../php/index.php")
 	}
 	if r.Method == "POST" {
 		reset()
 	}
 	if r.URL.Path == "/refresh" {
-		refresh := "<html> <script> var timer = setTimeout(function() { window.location='https://shwrfr.com/tito/' }, 10); </script> </html>"
+		refresh := "<html> <script> var timer = setTimeout(function() { window.location='http://"+ os.Getenv("tito_ip") +"' }, 0); </script> </html>"
 		w.Write([]byte(fmt.Sprintf(refresh)))
 	}
 }

@@ -5,6 +5,11 @@ VMware
 *********** -->
 
 <!DOCTYPE html>
+
+<?php
+	$ip = getenv("tito_ip");
+?>
+
 <html>
 
 <style>
@@ -75,7 +80,7 @@ input {
 			<input type="file" name="file" class="file-button" placeholder="Image">
 			<input type="submit" name="submit" value="Upload" class="upload-button" style="position: fixed;">
 		</form>
-		<form action="https://shwrfr.com/tito/">
+		<form action="http://<?php $ip?>">
 			<input type="submit" value="Return" class="return-button">
 		</form>
 </body>

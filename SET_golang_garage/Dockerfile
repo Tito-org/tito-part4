@@ -6,6 +6,8 @@ ENV db_password="PASSWORD"
 ENV db_ip="172.18.12.219"
 ENV db_name="Test"
 
+RUN apt-get update
+RUN apt-get install php
 RUN touch /tmp/.lock
 VOLUME /tmp
 RUN mkdir /app

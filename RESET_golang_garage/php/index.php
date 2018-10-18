@@ -4,6 +4,10 @@ Intern Developer
 VMware
 ************ -->
 
+<?php
+	$ip = getenv("tito_ip");
+?>
+
 <html>
     <style>
         .button-reset {
@@ -41,10 +45,10 @@ VMware
 <body style="background: linear-gradient(to bottom, #FFF8C8, #FFD07E);">
 
     <form method="POST" action="/refresh">
-        <input class="button-reset" type="submit" value="Reset" style="position: fixed; margin-left: 43%; top: 45%;" onclick=" var timer = setTimeout(function() { window.location='https://shwrfr.com/tito/' }, 2000);">
+        <input class="button-reset" type="submit" value="Reset" style="position: fixed; margin-left: 43%; top: 45%;" onclick="var timer = setTimeout(function() { window.location='http://<?php $ip?>' }, 2000);">
     </form>
 </body>
-    <form action="https://shwrfr.com/tito">
+    <form action="http://<?php $ip?>">
         <input type="submit" value="Return" class="button-ret">
     </form>
 
