@@ -13,6 +13,7 @@ import (
 	"log"
 	"net/http"
 	"strconv"
+	"os"
 )
 
 //getTheID = function to get the ID
@@ -38,7 +39,7 @@ func getTheID(db *sql.DB) string {
 
 //GetData = function to get the html query
 func GetData(w http.ResponseWriter, r *http.Request) {
-	if r.URL.Path != "/" {
+	if ((r.URL.Path != "/") && (r.URL.Path != "/ret")) {
 		http.Error(w, "Error", http.StatusNotFound)
 		return
 	}
@@ -46,7 +47,11 @@ func GetData(w http.ResponseWriter, r *http.Request) {
 		methodGet(w, r)
 		return
 	}
-	if r.Method == "POST" {
+	if ((r.Method == "POST") && (r.URL.Path == "/ret")) {
+		ret := "<html> <script> var timer = setTimeout (function() { window.location='http://"+ os.Getenv("tito_ip") +"' }, 0); </script> </html>"
+		w.Write([]byte(fmt.Sprintf(ret)))
+	}
+	if ((r.Method == "POST") && (r.URL.Path != "/ret" )) {
 		methodPost(w, r)
 	}
 	if r.Method != "GET" && r.Method != "POST" {
