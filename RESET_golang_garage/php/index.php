@@ -44,12 +44,11 @@ VMware
 
 <body style="background: linear-gradient(to bottom, #FFF8C8, #FFD07E);">
 
-    <form method="POST" action="/refresh">
+    <form method="POST" action="/reset">
         <input class="button-reset" type="submit" value="Reset" style="position: fixed; margin-left: 43%; top: 45%;" onclick="var timer = setTimeout(function() { window.location='http://<?php $ip?>' }, 2000);">
     </form>
+	<form method="POST" action="/return">
+    <input type="submit" value="Return" class="button-ret">
+	</form>
 </body>
-    <form action="http://<?php $ip?>">
-        <input type="submit" value="Return" class="button-ret">
-    </form>
-
 </html>
