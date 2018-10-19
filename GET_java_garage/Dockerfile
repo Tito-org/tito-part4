@@ -6,6 +6,7 @@ ENV db_username="root"
 ENV db_password="PASSWORD"
 ENV db_connector="jdbc"
 ENV db_name="Test"
+ENV tito_ip="172.18.12.219:1234"
 
 RUN touch /tmp/.lock
 VOLUME /tmp
