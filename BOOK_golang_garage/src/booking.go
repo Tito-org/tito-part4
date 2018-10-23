@@ -16,6 +16,7 @@ import (
 
 func bookMySQL(url string, get *data) {
 	db, err := sql.Open(""+ os.Getenv("db_type") +"", ""+ os.Getenv("db_username")+":"+ os.Getenv("db_password") +"@tcp("+ os.Getenv("db_ip") +")/"+ os.Getenv("db_name") +"")
+	//db, err := sql.Open("mysql", "root:PASSWORD@tcp(172.18.12.219)/Test")
 	checkError(err)
 	for i := 0; i < get.nbLine; i++ {
 		if url == get.model[i] {
