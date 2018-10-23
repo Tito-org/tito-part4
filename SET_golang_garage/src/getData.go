@@ -12,8 +12,8 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	"strconv"
 	"os"
+	"strconv"
 )
 
 //getTheID = function to get the ID
@@ -39,7 +39,7 @@ func getTheID(db *sql.DB) string {
 
 //GetData = function to get the html query
 func GetData(w http.ResponseWriter, r *http.Request) {
-	if ((r.URL.Path != "/") && (r.URL.Path != "/ret")) {
+	if (r.URL.Path != "/") && (r.URL.Path != "/ret") {
 		http.Error(w, "Error", http.StatusNotFound)
 		return
 	}
@@ -47,19 +47,19 @@ func GetData(w http.ResponseWriter, r *http.Request) {
 		methodGet(w, r)
 		return
 	}
-	if ((r.Method == "POST") && (r.URL.Path != "/ret" )) {
+	if (r.Method == "POST") && (r.URL.Path != "/ret") {
 		fmt.Printf("ADD")
 		methodPost(w, r)
 	}
-	if ((r.Method == "POST") && (r.URL.Path == "/ret")) {
+	if (r.Method == "POST") && (r.URL.Path == "/ret") {
 		fmt.Printf("Return")
-		ret := "<html> <script> var timer = setTimeout (function() { window.location='http://"+ os.Getenv("tito_ip") +"' }, 0); </script> </html>"
+		ret := "<html> <script> var timer = setTimeout (function() { window.location='http://" + os.Getenv("tito_ip") + "' }, 0); </script> </html>"
 		w.Write([]byte(fmt.Sprintf(ret)))
 	}
 	if r.Method != "GET" && r.Method != "POST" {
 		fmt.Fprintf(w, "Sorry, only GET and POST methods are supported.")
 	}
-	if marque != "" && model != "" && fileDB != "" && checkSizefile == 0 && (r.URL.Path == "/"){
+	if marque != "" && model != "" && fileDB != "" && checkSizefile == 0 && gazLevel != "" && location != "" && (r.URL.Path == "/") {
 		connectionDb()
 	}
 }
