@@ -7,6 +7,7 @@ public class Car {
     public String gazLevel;
     public String location;
     public Boolean book;
+    public String ipenv;
 
     public Car() {
     }
@@ -57,5 +58,13 @@ public class Car {
 
     public void setBook(Boolean book) {
         this.book = book;
+    }
+
+    public String getIpenv() {
+        return ipenv;
+    }
+
+    public void setIpenv(String ipenv) {
+        this.ipenv = ipenv;
     }
 }

@@ -114,8 +114,12 @@
         </c:forEach>
     </table>
 </div>
-<form action="https://172.18.12.219:1234">
-    <input type="submit" value="Return" class="button-ret">
-</form>
+<!-- <form action="http://172.18.12.219:1234"> -->
+
+<c:forEach items="${pictureList}" var="picture">
+    <form action="http://${picture.ipenv}" method="GET">
+</c:forEach>
+    <input class="button-ret" type="submit" value="Return">
+    </form>
 </body>
 </html>

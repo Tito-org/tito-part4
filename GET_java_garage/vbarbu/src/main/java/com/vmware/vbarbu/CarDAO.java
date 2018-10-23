@@ -15,10 +15,13 @@ public class CarDAO {
             Class.forName("com.mysql.jdbc.Driver");
 
             Connection conn = DriverManager.getConnection(""+ System.getenv("db_connector") +":"+ System.getenv("db_type") +"://"+ System.getenv("db_ip") +"/"+ System.getenv("db_name") +"?autoReconnect=true&useSSL=false", ""+ System.getenv("db_username") +"", ""+ System.getenv("db_password") +"");
-//            Connection conn = DriverManager.getConnection("jdbc:mysql://172.18.12.219/Test?autoReconnect=true&useSSL=false", "root", "PASSWORD");
+            //Connection conn = DriverManager.getConnection("jdbc:mysql://172.18.12.219/Test?autoReconnect=true&useSSL=false", "root", "PASSWORD");
 
             String sql = "SELECT * FROM garage";
             PreparedStatement ps = conn.prepareStatement(sql);
+            String ip = System.getenv("tito_ip");
+
+            System.out.println("Ip = " + ip);
 
             ResultSet rs = ps.executeQuery();
 
@@ -39,6 +42,7 @@ public class CarDAO {
                 picture.setGazLevel(gazLevel);
                 picture.setLocation(location);
                 picture.setBook(book);
+                picture.setIpenv(ip);
                 list.add(picture);
             }
             conn.close();
