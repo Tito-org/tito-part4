@@ -3,7 +3,7 @@ Information Docker
 ------------------
 
 GET microservice:
-Image: hjanasik/get_tito:1.0
+Image: hjanasik/get_tito:1.0   
 Command: docker run -d -p 1111:8080 --name="GET_TITO" hjanasik/get_tito:1.0
 
 ------------------
