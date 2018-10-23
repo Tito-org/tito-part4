@@ -13,9 +13,9 @@ import (
 )
 
 func main() {
-	http.HandleFunc("/", request)
+	http.HandleFunc("/", method)
 
-	fmt.Printf("READY\n")
+	fmt.Printf("\nReady\n")
 	if err := http.ListenAndServe(":8080", nil); err != nil {
 		log.Fatal(err)
 	}
