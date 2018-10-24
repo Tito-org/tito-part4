@@ -29,8 +29,9 @@
     th {
         border: 2px solid black;
         padding: 3px;
-        background-color: rgba(74,74,74,0.5);
+        background-color: rgba(71,71,71,1);
         text-align: center;
+        color: white;
     }
 
     tr:nth-child(even) {
