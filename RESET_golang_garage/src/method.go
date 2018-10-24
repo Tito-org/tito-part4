@@ -8,7 +8,6 @@ package main
 
 import (
 	"net/http"
-	"fmt"
 )
 
 func checkError(err error) {
@@ -19,8 +18,5 @@ func checkError(err error) {
 
 
 func method(w http.ResponseWriter, r *http.Request) {
-	fmt.Printf("Method = %s\n", r.Method)
-	if r.Method == "POST" {
-		resetMysql()
-	}
+	resetMysql()
 }

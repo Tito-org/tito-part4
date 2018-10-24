@@ -15,7 +15,7 @@ import (
 func main() {
 	http.HandleFunc("/", method)
 
-	fmt.Printf("\nReady\n")
+	fmt.Printf("Ready\n")
 	if err := http.ListenAndServe(":8080", nil); err != nil {
 		log.Fatal(err)
 	}
