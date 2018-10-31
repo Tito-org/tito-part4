@@ -24,16 +24,19 @@ func methodPost(w http.ResponseWriter, r *http.Request) {
 	location = r.PostFormValue("location")
 	file, header, err := r.FormFile("file")
 	if marque == "" || model == "" || gazLevel == "" || location == "" || file == nil {
+		fmt.Printf("marque = '%s'\nmodel = '%s'\ngazLevel = '%s'\nlocation = '%s'\nfile = '%s'\n", marque, model, gazLevel, location, file)
 		http.ServeFile(w, r, "../html/err.html")
+		fmt.Printf("Error complete correctly the form\n")
 		return
 	}
 	checkError(err)
 	defer file.Close()
 	CreateFolderUpload(file, header)
-	imgBackground = ConvertPicture(w, r,"../background/bg.jpg")
 	fileDB = ConvertPicture(w, r, "./image/"+header.Filename)
 	if checkSizefile == 0 {
-		img2html := "<html> <style> .form-img { background-image: url(data:image/jpeg;base64," + imgBackground + "); height: 195px; background-position: center; background-repeat: no-repeat;} </style> <body class=\"form-img\"> <meta http-equiv=\"refresh\" content=\"0\";URL=\"/\"/> </body> </html>"
+		img2html := "<html> <style> .form-img { background-image: url(\"http://www.wallpapermaiden.com/wallpaper/21181/download/2560x1600/long-road-field-clean-sky-snow-mountains.jpg\"); background-position: center; background-repeat: no-repeat; background-attachment: fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;} </style> </html>"
+		refresh := "<html> <body class=\"form-img\"> <meta http-equiv=\"refresh\" content=\"0\";URL=\"/\"/> </body> </html>"
 		w.Write([]byte(fmt.Sprintf(img2html)))
+		w.Write([]byte(fmt.Sprintf(refresh)))
 	}
 }
