@@ -1,3 +1,32 @@
+Information Makfile
+
+-----------------
+
+Command:  
+
+make help -> display the help  
+
+make clone -> clone the code from the github  
+
+make build -> build image from the code  
+
+make run -> run the containers from the code  
+
+make tito -> deploy containers from the docker hub  
+
+make stop -> stop the containers  
+
+make tito_stop -> stop the containers from the dockerhub  
+
+make rm -> remove the containers  
+
+make tito_rm -> remove the containers from the dockerhub  
+
+make rmi -> remove the images  
+
+make tito_rmi -> remove the images from the dockerhub  
+
+
 Information Docker
 
 ------------------
