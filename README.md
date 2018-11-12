@@ -1,4 +1,4 @@
-Information Makfile
+Information Makefile
 
 -----------------
 
