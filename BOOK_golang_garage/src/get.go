@@ -13,6 +13,7 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 )
 
+//Get the number of line that we get in our database
 func getLines(nbLine int, db *sql.DB) int {
 	var id string
 
@@ -28,6 +29,7 @@ func getLines(nbLine int, db *sql.DB) int {
 	return (nbLine)
 }
 
+//Get the data of the database in a tab
 func getTabStructFill(get *data, db *sql.DB, column string) []string {
 	tab := make([]string, get.nbLine)
 

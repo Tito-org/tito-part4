@@ -14,6 +14,7 @@ import (
 	"os"
 )
 
+//Check the size of the file
 func checkSize(size int64, w http.ResponseWriter, r *http.Request) int {
 	if size > 60000 {
 		http.ServeFile(w, r, "../html/imgheavy.html")
