@@ -57,4 +57,4 @@ tito_rmi: ## remove images from the dockerhub
 	@echo "Remove Tito Images Done"
 
 
-.PHONY: help clone build run stop rm rmi
+.PHONY: help clone tito tito_stop tito_rm tito_rmi
