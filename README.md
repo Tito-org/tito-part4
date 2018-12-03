@@ -1,3 +1,22 @@
+Information Makefile
+
+-----------------
+
+Command:  
+
+make help -> display the help  
+
+make clone -> clone the code from the github  
+
+make tito -> deploy containers from the docker hub  
+
+make tito_stop -> stop the containers from the dockerhub  
+
+make tito_rm -> remove the containers from the dockerhub  
+
+make tito_rmi -> remove the images from the dockerhub  
+
+
 Information Docker
 
 ------------------

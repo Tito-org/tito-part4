@@ -48,18 +48,19 @@ func GetData(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	if (r.Method == "POST") && (r.URL.Path != "/ret") {
-		fmt.Printf("ADD")
 		methodPost(w, r)
 	}
 	if (r.Method == "POST") && (r.URL.Path == "/ret") {
-		fmt.Printf("Return")
+		fmt.Printf("Return\n")
 		ret := "<html> <script> var timer = setTimeout (function() { window.location='http://" + os.Getenv("tito_ip") + "' }, 0); </script> </html>"
+		//ret := "<html> <script> var timer = setTimeout (function() { window.location='http://172.18.12.219:1234'}, 0); </script> </html>"
 		w.Write([]byte(fmt.Sprintf(ret)))
 	}
 	if r.Method != "GET" && r.Method != "POST" {
 		fmt.Fprintf(w, "Sorry, only GET and POST methods are supported.")
 	}
 	if marque != "" && model != "" && fileDB != "" && checkSizefile == 0 && gazLevel != "" && location != "" && (r.URL.Path == "/") {
+		fmt.Printf("ADD\n")
 		connectionDb()
 	}
 }

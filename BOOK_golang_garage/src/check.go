@@ -8,9 +8,9 @@ package main
 
 import (
 	"database/sql"
+	"os"
 	"strconv"
 	"strings"
-	"os"
 
 	_ "github.com/go-sql-driver/mysql"
 )
@@ -18,12 +18,14 @@ import (
 var repetition int
 var str string
 
+//Check the err in our method
 func checkError(err error) {
 	if err != nil {
 		panic(err)
 	}
 }
 
+//Add a space in our string
 func addSpace(one string, two string) {
 	str = one
 	for i := 0; i <= repetition; i++ {
@@ -33,6 +35,7 @@ func addSpace(one string, two string) {
 	repetition = 0
 }
 
+//Check if our string get a "%" (= space symbol in URL language)
 func checkString(url string) string {
 	i := strings.Index(url, "%")
 	if i > -1 {
@@ -52,10 +55,11 @@ func checkString(url string) string {
 	return (url)
 }
 
+//Check if the Element is book or not
 func checkBooking(i int) int {
 	var booking string
 
-	db, err := sql.Open(""+ os.Getenv("db_type") +"", ""+ os.Getenv("db_username")+":"+ os.Getenv("db_password") +"@tcp("+ os.Getenv("db_ip") +")/"+ os.Getenv("db_name") +"")
+	db, err := sql.Open(""+os.Getenv("db_type")+"", ""+os.Getenv("db_username")+":"+os.Getenv("db_password")+"@tcp("+os.Getenv("db_ip")+")/"+os.Getenv("db_name")+"")
 	//db, err := sql.Open("mysql", "root:PASSWORD@tcp(172.18.12.219)/Test")
 	checkError(err)
 	query, err := db.Query("SELECT Book FROM garage WHERE id=?", i+1)

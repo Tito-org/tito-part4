@@ -12,6 +12,7 @@ import (
 	"os"
 )
 
+//Display our page (html, css)
 func displayHTMLPage(get *data, w http.ResponseWriter, r *http.Request) {
 	var checkEmpty int
 	var test string
@@ -32,12 +33,12 @@ func displayHTMLPage(get *data, w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte(fmt.Sprintf(end)))
 	if checkEmpty == 0 {
 		imgBack := "<html>  <body> <h1 style=\"text-align: center;\">No car Available </h1> </body> </html>"
-		refresh := "<html> <script> var timer = setTimeout(function() { window.location='http://"+ os.Getenv("tito_ip") +"' }, 2000); </script> </html>"
+		refresh := "<html> <script> var timer = setTimeout(function() { window.location='http://" + os.Getenv("tito_ip") + "' }, 2000); </script> </html>"
 		//refresh := "<html> <script> var timer = setTimeout(function() { window.location='http://172.18.12.219:1234' }, 2000); </script> </html>"
 		w.Write([]byte(fmt.Sprintf(imgBack)))
 		w.Write([]byte(fmt.Sprintf(refresh)))
 	} else {
-		returnBut := "<html> <style>  .button-ret {border-radius: 8px; color: black; border: 2px solid black; background-color: rgba(191,191,191,0.5); padding: 15px 32px; cursor: pointer; transition-duration: 0.4s;}  .button-ret:hover { background-color: black; color: white; } </style> <body> <form action=\"http://"+ os.Getenv("tito_ip") +"\">  <input type=\"submit\" Value=\"Return\" class=\"button-ret\"> </form> </body> </html>"
+		returnBut := "<html> <style>  .button-ret {border-radius: 8px; color: black; border: 2px solid black; background-color: rgba(191,191,191,0.5); padding: 15px 32px; cursor: pointer; transition-duration: 0.4s;}  .button-ret:hover { background-color: black; color: white; } </style> <body> <form action=\"http://" + os.Getenv("tito_ip") + "\">  <input type=\"submit\" Value=\"Return\" class=\"button-ret\"> </form> </body> </html>"
 		//returnBut := "<html> <style>  .button-ret {border-radius: 8px; color: black; border: 2px solid black; background-color: rgba(191,191,191,0.5); padding: 15px 32px; cursor: pointer; transition-duration: 0.4s;}  .button-ret:hover { background-color: black; color: white; } </style> <body> <form action=\"http://172.18.12.219:1234\">  <input type=\"submit\" Value=\"Return\" class=\"button-ret\"> </form> </body> </html>"
 		w.Write([]byte(fmt.Sprintf(returnBut)))
 	}
