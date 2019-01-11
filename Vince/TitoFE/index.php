@@ -13,7 +13,7 @@
 
 
         <!-- Bootstrap Core CSS -->
-        <link href="./asset/css/bootstrap.min.css" rel="stylesheet">
+        <link href="./asset/css/bootstrap.css" rel="stylesheet">
 
         <!-- Custom CSS -->
         <link href="./asset/css/stylish-portfolio.css" rel="stylesheet">
@@ -35,12 +35,22 @@
 -->
 		<!-- Ajout script Ajax -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="./asset/js/book.js"></script>
+
 <script>
 $(document).ready(function () {
     $("#read").click(function () {
-            $.get("http://192.168.33.22:8080/function/read", function(data, status){
-                    var json= data;
-                    $("#message").html(data);
+            $.get("https://92wo7syjzk.execute-api.eu-west-1.amazonaws.com/Dev/read", function(data, status){
+                    initCarsList(data,"#cars-list-container",{
+                        idKey: 'name',
+                        tableClass: "table custom-table",
+                        buttonClass: "btn btn-default",
+                        buttonClick: function (id){
+                            $.post("https://92wo7syjzk.execute-api.eu-west-1.amazonaws.com/Dev/book", {
+                                name: id
+                            });
+                            }
+                    })
             });
         }); 
 });
@@ -169,7 +179,6 @@ $(document).ready(function () {
                         <div class="col-lg-12 col-md-12">
                             <input id="submit" name="submit" type="submit" value="Send" class="btn btn-default"> 
                         </div>
-  <div id="message"></div>
 				</div>
                     <!-- /.container -->
                 </form>
@@ -182,9 +191,10 @@ $(document).ready(function () {
         }
         ?>
 		<!--ajout bouton read -->
-<read class="col-lg-12 col-md-12">
-                            <input id="read" name="read" type="submit" value="read" class="btn btn-default">
-                        </read>
+<div class="col-lg-12 col-md-12 read-car-list-container">
+                            <input id="read" name="read" type="submit" value="Need a car?" class="btn btn-default btn-lg">
+                        </div>
+        <div id="cars-list-container"></div>
         <!-- Footer -->
         <footer>
             <div class="container">
