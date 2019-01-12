@@ -210,7 +210,7 @@ $(document).ready(function () {
                         <hr class="small">
                        <p class="text-muted">
                         <?PHP
-                        echo "V1.9.4";
+                        echo "V2";
                         echo "<br>";
                         echo "Tito Front End: " . gethostname() . " (" . getHostByName(getHostName()) .")";
                         echo "<br>";
@@ -219,6 +219,10 @@ $(document).ready(function () {
                         echo "<a href=\"db_dump.php\">db_dump";
 
                                 ?>
+                        </p>
+                        <p class="text-muted">
+                            <a href="https://92wo7syjzk.execute-api.eu-west-1.amazonaws.com/Dev/reset" target="_blank">Reset
+
                         </p>
                     </div>
                 </div>
