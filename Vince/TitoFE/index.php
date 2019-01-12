@@ -47,9 +47,7 @@ $(document).ready(function () {
                         buttonClass: "btn btn-default",
                         buttonClick: function (id){
                             var json = '{"name":"'+ id +'"}';
-                            $.post("https://92wo7syjzk.execute-api.eu-west-1.amazonaws.com/Dev/book", {
-                                name: id
-                            });
+                            $.post("https://92wo7syjzk.execute-api.eu-west-1.amazonaws.com/Dev/book",'{"name":"'+ id +'"}');
                             }
                     })
             });
