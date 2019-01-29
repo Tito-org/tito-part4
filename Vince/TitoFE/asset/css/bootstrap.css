@@ -18,7 +18,8 @@
   padding:0 50px;
 }
 table{
-  color:black !important;
+# color:black !important;
+  color:black;
 }
 html {
   font-family: sans-serif;
