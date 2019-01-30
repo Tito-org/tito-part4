@@ -1,0 +1,84 @@
+formatVersion: 1
+inputs:
+  titoVersion:
+    type: string
+    description: Version de code de Tito
+    enum:
+      - V1
+    default: V1
+  size:
+    type: string
+    enum:
+      - small
+    default: small
+resources:
+  Fe:
+    type: Cloud.Machine
+    properties:
+      image: CentosV7
+      flavor: small
+      count: 1
+      sshKeyName: SE-Key
+      networks:
+        - name: '${resource.Public_Net.name}'
+      cloudConfig: |
+        #cloud-config
+        packages:
+          - git
+        runcmd:
+          - cd /tmp
+          - git clone https://github.com/Tito-org/tito-part4
+          - cd tito-part4/Vince/TitoFE/asset/Deployment/CloudAssembly/TitoMonolith/
+          - chmod u+x *.sh
+          - bash tito_as.sh ${resource.DBMachine.address}
+  DBMachine:
+    type: Cloud.Machine
+    properties:
+      image: CentosV7
+      flavor: small
+      count: 1
+      sshKeyName: SE-Key
+      networks:
+        - name: '${resource.Public_Net.name}'
+      cloudConfig: |
+        #cloud-config
+        packages:
+          - git
+          - mariadb-server
+        runcmd:
+          - cd /tmp
+          - git clone https://github.com/Tito-org/tito-part4
+          - cd tito-part4/Vince/TitoFE/asset/Deployment/CloudAssembly/TitoMonolith/
+          - chmod u+x *.sh
+          - bash conf_db.sh
+  Public_Net:
+    type: Cloud.Network
+    properties:
+      name: All Open - Dev
+      networkType: public
+  RDS_Cluster:
+    type: Cloud.Service.AWS.RDS.Cluster
+    properties:
+      count: 0
+      region: eu-west-1
+      account: AWS perso Vince
+      engine: aurora-mysql
+      master_username: root
+      master_password: Tito2016
+      skip_final_snapshot: true
+      db_subnet_group_name: default-vpc-00ca7e4534ead6705
+      vpc_security_group_ids:
+        - sg-09eebe3ddf8d1a960
+  RDS_Cluster_Instance:
+    type: Cloud.Service.AWS.RDS.Cluster.Instance
+    properties:
+      count: 0
+      engine: aurora-mysql
+      identifier: '${env.deploymentName}'
+      region: eu-west-1
+      account: AWS perso Vince
+      instance_class: db.t2.small
+      cluster_identifier: '${resource.RDS_Cluster.id}'
+      availability_zone: eu-west-1a
+      publicly_accessible: true
+      db_subnet_group_name: default-vpc-00ca7e4534ead6705
