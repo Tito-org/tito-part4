@@ -10,7 +10,8 @@ HTMLPATH=/var/www/html
 GITREPO=https://github.com/Tito-org/tito-part4
 HTTPDCONF=/etc/httpd/conf/httpd.conf
 SQLSERVER=$1
-CODEVERSRION=V1
+CODEVERSION=V1
+TitoCodePath=/tmp/tito-part4/Vince/TitoFE/
 
 #### disable SE Linux
 sed -i --follow-symlinks 's/^SELINUX=.*/SELINUX=disabled/g' /etc/sysconfig/selinux && cat /etc/sysconfig/selinux
@@ -33,18 +34,19 @@ yum install php -y
 yum install php-mysql -y
 /usr/sbin/chkconfig httpd on
 
-echo
-echo -e "Install Tito sources \n"
+
 
 #### Download Tito code and configure HTTPD
-git checkout tags/$CodeVersion
+git checkout tags/$CODEVERSION
 
 echo
-echo -e "conf httpd.conf to include PHP and set MySQL server\n"
+echo -e "Install Tito sources \n"
+mv $TitoCodePath/* $HTMLPATH
 
 echo
 echo -e "modify SQLSERVER variable to remove not needed characters"
 SQLSERVER=$(tr -d []\' <<< $SQLSERVER)
+echo -e "SQLSERVER= " $SQLSERVER
 
 echo
 echo "LoadModule php5_module modules/libphp5.so" >> $HTTPDCONF
