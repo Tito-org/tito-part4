@@ -10,7 +10,7 @@ HTMLPATH=/var/www/html
 GITREPO=https://github.com/Tito-org/tito-part4
 HTTPDCONF=/etc/httpd/conf/httpd.conf
 SQLSERVER=$1
-CODEVERSRION=V1.5
+CODEVERSRION=V1
 
 #### disable SE Linux
 sed -i --follow-symlinks 's/^SELINUX=.*/SELINUX=disabled/g' /etc/sysconfig/selinux && cat /etc/sysconfig/selinux
@@ -33,19 +33,10 @@ yum install php -y
 yum install php-mysql -y
 /usr/sbin/chkconfig httpd on
 
-#### Install Git
-echo
-echo -e "install Git\n"
-
-yum install git -y
-
 echo
 echo -e "Install Tito sources \n"
 
 #### Download Tito code and configure HTTPD
-cd $HTMLPATH
-git clone $GITREPO .
-mv tito-part4/Vince/TitoFE/* .
 git checkout tags/$CodeVersion
 
 echo
